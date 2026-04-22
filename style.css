@@ -1,0 +1,285 @@
+/* =========================================
+   VARIABLES Y CONFIGURACIÓN BASE
+   ========================================= */
+:root {
+    --pistacho: #93c08b;
+    --pistacho-dark: #7aa373;
+    --oscuro: #2d3436;
+    --crema: #fdfaf6;
+    --blanco: #ffffff;
+    --text-muted: #636e72;
+    /* La curva mágica de Apple: arranca rápido, frena muy suave */
+    --apple-curve: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-slow: all 0.6s var(--apple-curve);
+    --transition-fast: all 0.4s var(--apple-curve);
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    -webkit-font-smoothing: antialiased; /* Suavizado de fuentes estilo Mac */
+}
+
+body { 
+    font-family: 'Poppins', sans-serif; 
+    background-color: var(--crema); 
+    color: var(--oscuro); 
+    line-height: 1.6; 
+    overflow-x: hidden; 
+}
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+.navbar { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 1.2rem 8%; 
+    background: var(--blanco); 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+    box-shadow: 0 2px 15px rgba(0,0,0,0.03); 
+}
+
+.logo { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 1.8rem; 
+    font-weight: bold; 
+    color: var(--pistacho); 
+}
+
+.btn-nav { 
+    background: var(--oscuro); 
+    color: var(--blanco); 
+    padding: 12px 28px; 
+    border-radius: 50px; 
+    font-size: 1rem; 
+    font-weight: 600; 
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.btn-nav:hover { 
+    transform: translateY(-3px) scale(1.05); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
+}
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.hero { 
+    height: 60vh; 
+    min-height: 400px; 
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/cookie-pistacho.jpg') center/cover no-repeat; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    color: var(--blanco); 
+    padding: 0 20px; 
+}
+
+.hero h1 { 
+    font-family: 'Playfair Display', serif; 
+    font-size: clamp(2.2rem, 7vw, 3.8rem); 
+    margin-bottom: 10px; 
+}
+
+.btn-hero { 
+    background: var(--pistacho); 
+    color: var(--blanco); 
+    padding: 18px 45px; 
+    border-radius: 50px; 
+    font-weight: 600; 
+    font-size: 1.1rem; 
+    margin-top: 25px; 
+    display: inline-block; 
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.btn-hero:hover { 
+    transform: translateY(-4px) scale(1.05); 
+    box-shadow: 0 15px 30px rgba(147, 192, 139, 0.4); 
+}
+
+/* =========================================
+   SECCIÓN CARTA Y TÍTULO
+   ========================================= */
+.section { padding: 80px 8%; text-align: center; }
+
+.title-container { margin-bottom: 3.5rem; }
+
+.section-title { 
+    display: inline-block; 
+    font-family: 'Playfair Display', serif; 
+    font-size: clamp(2.2rem, 5vw, 3.2rem); 
+    transition: var(--transition-slow);
+    cursor: default;
+}
+
+.section-title:hover { 
+    color: var(--pistacho); 
+    transform: translateY(-5px); 
+}
+
+.section-title::after { 
+    content: ''; 
+    display: block; 
+    width: 0; 
+    height: 3px; 
+    background: var(--pistacho); 
+    transition: var(--transition-slow); 
+    margin: 8px auto 0; 
+}
+
+.section-title:hover::after { width: 70%; }
+
+/* =========================================
+   FILTROS (BOTONES CATEGORÍAS)
+   ========================================= */
+.filter-container { 
+    display: flex; 
+    justify-content: center; 
+    gap: 18px; 
+    margin-bottom: 5rem; 
+    flex-wrap: wrap; 
+}
+
+.filter-btn { 
+    padding: 14px 32px; 
+    border: 2px solid var(--pistacho); 
+    background: var(--blanco); 
+    color: var(--pistacho); 
+    border-radius: 50px; 
+    font-weight: 600; 
+    font-size: 1.05rem; 
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.filter-btn:hover, .filter-btn.active { 
+    background: var(--pistacho); 
+    color: var(--blanco); 
+    transform: translateY(-4px); 
+    box-shadow: 0 8px 20px rgba(147, 192, 139, 0.4); 
+}
+
+/* =========================================
+   TARJETAS DE PRODUCTO (APPLE FLOW)
+   ========================================= */
+.menu-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 35px; 
+    text-align: left; 
+}
+
+.menu-item { 
+    background: var(--blanco); 
+    border-radius: 25px; 
+    overflow: hidden; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+    display: flex; 
+    flex-direction: column; 
+    transition: var(--transition-slow); /* Movimiento Apple */
+    will-change: transform, box-shadow;
+}
+
+.menu-item:hover { 
+    transform: translateY(-15px) scale(1.02); 
+    box-shadow: 0 35px 70px rgba(0,0,0,0.12); 
+}
+
+.item-img { 
+    width: 100%; 
+    height: 240px; 
+    object-fit: cover; 
+    transition: transform 0.8s var(--apple-curve); 
+}
+
+.menu-item:hover .item-img { 
+    transform: scale(1.1); 
+}
+
+.item-info { 
+    padding: 25px; 
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+}
+
+.item-info h3 { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 1.4rem; 
+    margin-bottom: 8px; 
+}
+
+.item-info p { 
+    font-size: 0.95rem; 
+    color: var(--text-muted); 
+    margin-bottom: 20px; 
+}
+
+.price-tag { 
+    color: var(--pistacho); 
+    font-weight: 700; 
+    font-size: 1.25rem; 
+}
+
+.promo-card { 
+    border: 2px solid var(--pistacho); 
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer { 
+    background: var(--oscuro); 
+    color: var(--blanco); 
+    padding: 5rem 8%; 
+    text-align: center; 
+}
+
+.footer-actions { 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    margin-top: 2.5rem; 
+    flex-wrap: wrap; 
+}
+
+.btn-footer { 
+    border: 2px solid var(--pistacho); 
+    color: var(--pistacho); 
+    padding: 14px 35px; 
+    border-radius: 8px; 
+    font-weight: 600; 
+    font-size: 1rem; 
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.btn-footer:hover { 
+    background: var(--pistacho); 
+    color: var(--blanco); 
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    .navbar { padding: 1rem 5%; }
+    .filter-btn { padding: 12px 24px; font-size: 0.95rem; }
+    .filter-container { gap: 10px; }
+}
+
+@media (max-width: 480px) {
+    .menu-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.2rem; }
+}
